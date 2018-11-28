@@ -14,19 +14,21 @@ example_request = Request(EXAMPLE_URL, headers=headers)
 example_page = urlopen(example_request).read()
 example_page = example_page.decode('utf-8')
 
-EXAMPLE_TAG = '<a href="/places/default/view/'
-example_tag_size = len(EXAMPLE_TAG)
-example_tag_index = example_page.find(EXAMPLE_TAG)
-example_value_start = example_tag_index + example_tag_size
-example_ = ''
-for char in example_page[example_value_start:]:
-	if char != '-':
-		example_ += char
-	else:
-		break
+for number in range(1, 11):
+    number = str(number)
+    EXAMPLE_TAG = '-' + number + '">'
+    example_tag_size = len(EXAMPLE_TAG)
+    example_tag_index = example_page.find(EXAMPLE_TAG)
+    example_value_start = example_tag_index - 1
+    example_rev = ''
+    for char in range(example_value_start, 0, -1):
+        if example_page[char] != '/':
+            example_rev += example_page[char]
+        else:
+            break
+    example_new = example_rev[::-1]
 
+    for char in '-':
+        example_new = example_new.replace(char, ' ')
 
-	
-
-print(f'{html.unescape(example_)}\n')
-print(f'{example_}\n')
+    print(f'{example_new}\n')
