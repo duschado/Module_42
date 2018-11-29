@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 """
-Weather app project.
+List of countries from Example web scraping website.
 """
 import html
 from urllib.request import urlopen, Request
